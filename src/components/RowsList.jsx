@@ -6,7 +6,7 @@ const RowsList = () => {
     <div>
       <ul>
         {rowsList.map((row, index) => (
-          <SingleRow key={index} index={index} />
+          <SingleRow key={index} myKey={index} row={row} />
         ))}
       </ul>
     </div>

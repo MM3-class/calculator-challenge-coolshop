@@ -5,7 +5,7 @@ const rowContext = createContext();
 export const RowProvider = ({ children }) => {
 
     const [rowsList, setRowsList] = useState([
-        { sign: '+', value: 0, enabled: true }
+        { operator: '+', value: "", enabled: true }
     ]);
 
     /* TRACK INPUT NUMBER CHANGING */
@@ -17,15 +17,14 @@ export const RowProvider = ({ children }) => {
 
     /* TRACK THE OPERATOR '-' or '+' */
     const handleOperator = (e, index) => {
-
         const newRows = [...rowsList];
-        newRows[index].sign = e.target.value;
+        newRows[index].operator = e.target.value;
         setRowsList(newRows);
     }
 
     /* ADD NEW ROW (new object) */
     const addRow = () => {
-        setRowsList([...rowsList, { sign: '+', value: 0, enabled: true }]);
+        setRowsList([...rowsList, { operator: '+', value: "", enabled: true }]);
     };
 
     /* REMOVE A SPECIFIC OBJECT FROM THE ROWS FIELD */
@@ -40,16 +39,17 @@ export const RowProvider = ({ children }) => {
         const newRows = [...rowsList];
         newRows[index].enabled = !newRows[index].enabled;
         setRowsList(newRows);
-        
+
         console.log(rowsList[index].enabled)
-        };
+    };
 
     /* CALCULATE THE VALUES WITH CONDITION + OR -  */
     const calcValue = () => {
         const enabledRows = rowsList.filter((row) => row.enabled);
         const sum = enabledRows.reduce((total, row) => {
-            return row.sign === '+' ? total + row.value : total - row.value;
+            return row.operator === '+' ? total + row.value : total - row.value;
         }, 0);
+        
         return sum;
     };
 

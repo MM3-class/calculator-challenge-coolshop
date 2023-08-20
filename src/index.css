@@ -24,11 +24,6 @@ input, select, option {
   margin: 4px 6px;
   border-radius: 4px;
 }
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 li {
   display: flex;
   align-items: center;
